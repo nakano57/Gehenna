@@ -379,6 +379,11 @@
         opacity: 0.7;
         transition: opacity 0.3s ease;
         z-index: 10;
+        cursor: pointer;
+      }
+      
+      .blue-archive-logo svg {
+        pointer-events: all;
       }
 
       .blue-archive-logo:hover {
@@ -447,7 +452,7 @@
       </div>
     </div>
 
-    <a href="#" onclick="openRandomPage()" class="blue-archive-logo">
+    <a href="https://bluearchive.jp" target="_blank" class="blue-archive-logo">
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -562,12 +567,12 @@
       // ランダムページを開く関数
       function openRandomPage() {
         const pages = [
-          'https://hina.gehenna.academy',
-          'https://swimsuit.hina.gehenna.academy',
-          'https://dress.hina.gehenna.academy'
+          "https://hina.gehenna.academy",
+          "https://swimsuit.hina.gehenna.academy",
+          "https://dress.hina.gehenna.academy",
         ];
         const randomPage = pages[Math.floor(Math.random() * pages.length)];
-        window.open(randomPage, '_blank');
+        window.open(randomPage, "_blank");
       }
 
       // 混沌の血管のような効果を生成
@@ -591,8 +596,19 @@
         }
       }
 
-      // ページ読み込み時に血管効果を生成
-      document.addEventListener("DOMContentLoaded", createChaosVeins);
+      // ページ読み込み時に血管効果を生成とイベント設定
+      document.addEventListener("DOMContentLoaded", function() {
+        createChaosVeins();
+        
+        // 中央のGEHENNAロゴのクリックイベント
+        const gehennaLogo = document.querySelector('.logo-svg');
+        if (gehennaLogo) {
+          gehennaLogo.style.cursor = 'pointer';
+          gehennaLogo.addEventListener('click', function(e) {
+            openRandomPage();
+          });
+        }
+      });
 
       // 動的な背景効果を強化（マウス追従）
       let mouseX = 0,
@@ -617,15 +633,7 @@
                 hsl(0, 0%, ${20 + intensity * 10}%) 100%)`;
       });
 
-      // ロゴのクリック時の特別効果
-      document
-        .querySelector(".logo-svg")
-        .addEventListener("click", function () {
-          this.style.animation = "none";
-          setTimeout(() => {
-            this.style.animation = "logoFloat 5s ease-in-out infinite";
-          }, 100);
-        });
+
     </script>
   </body>
 </html>
