@@ -447,7 +447,7 @@
       </div>
     </div>
 
-    <a href="https://bluearchive.jp" target="_blank" class="blue-archive-logo">
+    <a href="#" onclick="openRandomPage()" class="blue-archive-logo">
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -559,6 +559,17 @@
     </a>
 
     <script>
+      // ランダムページを開く関数
+      function openRandomPage() {
+        const pages = [
+          'https://hina.gehenna.academy',
+          'https://swimsuit.hina.gehenna.academy',
+          'https://dress.hina.gehenna.academy'
+        ];
+        const randomPage = pages[Math.floor(Math.random() * pages.length)];
+        window.open(randomPage, '_blank');
+      }
+
       // 混沌の血管のような効果を生成
       function createChaosVeins() {
         const container = document.getElementById("chaosVeins");
